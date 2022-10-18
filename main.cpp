@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 	sf::RenderWindow window(sf::VideoMode(800, 600), "BirdAI");
 	window.setFramerateLimit(60);
 
-	NEATAlgorithm algorithm(5, 1);
+	NEATAlgorithm algorithm(7, 1);
 	algorithm.evaluatePopulation();
 
 	int quit = 0;

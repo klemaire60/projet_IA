@@ -38,6 +38,8 @@ void Bird::applyAI(Gate nextGate, Gate secondNextGate)
 
 		std::vector<double> inputs;
 		inputs.push_back(y);
+		inputs.push_back(nextGate.x - x);
+		inputs.push_back(secondNextGate.x - x);
 		inputs.push_back(nextGate.yMin);
 		inputs.push_back(nextGate.yMax);
 		inputs.push_back(secondNextGate.yMin);
@@ -78,6 +80,7 @@ void Environment::generateGates()
 {
 	std::uniform_int_distribution<int> gateIntervalDistribution(25, 50);
 	std::uniform_int_distribution<int> gateAltitudeDistribution(30, 70);
+	std::uniform_int_distribution<int> gateSizeDistribution(5, 25);
 
 	if (actors.size() > 0)
 	{
@@ -91,7 +94,7 @@ void Environment::generateGates()
 		while (currentX + 900 > nextGateX)
 		{
 			double altitude = gateAltitudeDistribution(device);
-			Gate gate(nextGateX, altitude, altitude + 20);
+			Gate gate(nextGateX, altitude, altitude + gateSizeDistribution(device));
 			gates.push_back(gate);
 			nextGateX += gateIntervalDistribution(device);
 		}
