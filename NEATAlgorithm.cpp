@@ -815,6 +815,19 @@ void NEATAlgorithm::evaluatePopulation()
 	while (env.haveActorAlive())
 	{
 		env.iterate();
+		std::vector<Bird *> & actors = env.getActors();
+		double currentX = actors[0]->x;
+		if (currentX > 10000)
+		{
+			for (int i = 0; i < actors.size(); i++)
+			{
+				if (!actors[i]->isDead)
+				{
+					actors[i]->fitness = currentX;
+				}
+			}
+			break;
+		}
 	}
 
 	std::vector<Bird*> actors = env.getActors();

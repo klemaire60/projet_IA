@@ -78,9 +78,9 @@ void Bird::setDead(double x)
 
 void Environment::generateGates()
 {
-	std::uniform_int_distribution<int> gateIntervalDistribution(25, 50);
-	std::uniform_int_distribution<int> gateAltitudeDistribution(30, 70);
-	std::uniform_int_distribution<int> gateSizeDistribution(5, 25);
+	std::uniform_int_distribution<int> gateIntervalDistribution(30, 50);
+	std::uniform_int_distribution<int> gateAltitudeDistribution(35, 65);
+	std::uniform_int_distribution<int> gateSizeDistribution(5, 15);
 
 	if (actors.size() > 0)
 	{

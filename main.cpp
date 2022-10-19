@@ -40,6 +40,8 @@ int main(int argc, char **argv)
 				printf("|              Generation %4d           |\n", algorithm.getGenerationNumber());
 				printf("------------------------------------------\n");
 				algorithm.evaluatePopulation();
+				if (algorithm.getNeuralNetwork(0)->fitness >= 10000)
+					break;
 				printf("------------------------------------------\n\n\n");
 			}
 		}
