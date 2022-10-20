@@ -10,7 +10,7 @@
 #define DRAW_SCORE 0.5
 
 
-int NEATAlgorithm::population = 10;
+int NEATAlgorithm::population = 300;
 double NEATAlgorithm::deltaDisjoint = 2.0;
 double NEATAlgorithm::deltaWeights = 0.4;
 double NEATAlgorithm::deltaThreshold = 1.0;
