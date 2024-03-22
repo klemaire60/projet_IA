@@ -1,16 +1,16 @@
-#include <iostream>
 #include "SFML/Graphics.hpp"
+#include "Rectangle.h"
 
 int main()
 {
+	//Création de la fenêtre 
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Simulation IA");
 
-	sf::RectangleShape rectangle(sf::Vector2f(700.f, 500.f));
-
-	rectangle.setFillColor(sf::Color::Transparent);
-	rectangle.setOutlineThickness(10.f);
-	rectangle.setOutlineColor(sf::Color::White);
-
+	//Création du rectangle
+	Rectangle rectangle(700, 500);
+	rectangle.setPosition(50.f, 50.f);
+	rectangle.setBorderColor(sf::Color::White);
+	rectangle.setBorderThickness(5.f);
 
 	while (window.isOpen())
 	{
@@ -20,10 +20,7 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-
-		window.clear(sf::Color::Black);
-
-		rectangle.setPosition(50.f, 50.f);
+		window.clear(/*sf::Color::Black*/);
 
 		window.draw(rectangle);
 
