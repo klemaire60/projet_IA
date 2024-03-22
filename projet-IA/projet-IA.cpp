@@ -4,14 +4,29 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Simulation IA");
-	sf::Event e;
+
+	sf::RectangleShape rectangle(sf::Vector2f(700.f, 500.f));
+
+	rectangle.setFillColor(sf::Color::Transparent);
+	rectangle.setOutlineThickness(10.f);
+	rectangle.setOutlineColor(sf::Color::White);
+
 
 	while (window.isOpen())
 	{
-		while (window.pollEvent(e))
+		sf::Event event;
+		while (window.pollEvent(event))
 		{
-			if (e.type == sf::Event::Closed)
+			if (event.type == sf::Event::Closed)
 				window.close();
 		}
+
+		window.clear(sf::Color::Black);
+
+		rectangle.setPosition(50.f, 50.f);
+
+		window.draw(rectangle);
+
+		window.display();
 	}
 }
