@@ -1,20 +1,26 @@
 #include "Rectangle.h"
 
-Rectangle::Rectangle(float width, float height) : sf::RectangleShape(sf::Vector2f(width,height))
+Rectangle::Rectangle(int width, int height, float x, float y)
 {
-	setFillColor(sf::Color::Transparent);
-	setOutlineThickness(10.f);
-	setOutlineColor(sf::Color::White);
-	borderThickness = 2.f;
+    setPosition(sf::Vector2f(x, y));
+    rectangleShape.setSize(sf::Vector2f(width, height));
+    rectangleShape.setPosition(position);
+    rectangleShape.setFillColor(sf::Color::Transparent);
+    rectangleShape.setOutlineColor(sf::Color::White);
+    rectangleShape.setOutlineThickness(5.f);
 }
 
-void Rectangle::setBorderColor(sf::Color color)
+Rectangle::~Rectangle()
 {
-	setOutlineColor(color);
 }
 
-void Rectangle::setBorderThickness(float thickness)
+void Rectangle::draw(sf::RenderWindow& window) const
 {
-	borderThickness = thickness;
-	setOutlineThickness(thickness);
+    window.draw(rectangleShape);
+}
+
+void Rectangle::setPosition(sf::Vector2f newPosition)
+{
+    position = newPosition;
+    rectangleShape.setPosition(position);
 }

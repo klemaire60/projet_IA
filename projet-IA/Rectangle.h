@@ -1,16 +1,17 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-//Position = 
-
-class Rectangle : public sf::RectangleShape
+class Rectangle
 {
-private: 
-	float borderThickness;
+private:
+    sf::RectangleShape rectangleShape;
 
-public : 
-	Rectangle(float width, float height);
+    sf::Vector2f position;
 
-	void setBorderColor(sf::Color color);
-	void setBorderThickness(float thickness);
+public:
+    Rectangle(int width, int height, float x, float y);
+    ~Rectangle();
+    void draw(sf::RenderWindow& window) const;
+
+    void setPosition(sf::Vector2f newPosition);
 };

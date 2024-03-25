@@ -1,5 +1,6 @@
 #include "SFML/Graphics.hpp"
 #include "Rectangle.h"
+#include "Pixel.h"
 
 int main()
 {
@@ -7,10 +8,10 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Simulation IA");
 
 	//Création du rectangle
-	Rectangle rectangle(700, 500);
-	rectangle.setPosition(50.f, 50.f);
-	rectangle.setBorderColor(sf::Color::White);
-	rectangle.setBorderThickness(5.f);
+	Rectangle rectangle(700, 500, 50, 50);
+
+	//Création du pixel
+	Pixel pixel(20, 20, 400, 300, 100);
 
 	while (window.isOpen())
 	{
@@ -22,7 +23,8 @@ int main()
 		}
 		window.clear(/*sf::Color::Black*/);
 
-		window.draw(rectangle);
+		rectangle.draw(window);
+		pixel.draw(window);
 
 		window.display();
 	}
