@@ -1,2 +1,12 @@
-﻿  main.cpp
+﻿  Pixel.cpp
+C:\Users\Kevin LEMAIRE\Desktop\projet-IA\projet-IA\Pixel.cpp(5,44): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+C:\Users\Kevin LEMAIRE\Desktop\projet-IA\projet-IA\Pixel.cpp(5,44): warning C4244:         with
+C:\Users\Kevin LEMAIRE\Desktop\projet-IA\projet-IA\Pixel.cpp(5,44): warning C4244:         [
+C:\Users\Kevin LEMAIRE\Desktop\projet-IA\projet-IA\Pixel.cpp(5,44): warning C4244:             T=float
+C:\Users\Kevin LEMAIRE\Desktop\projet-IA\projet-IA\Pixel.cpp(5,44): warning C4244:         ]
+C:\Users\Kevin LEMAIRE\Desktop\projet-IA\projet-IA\Pixel.cpp(5,37): warning C4244: 'argument' : conversion de 'int' en 'T', perte possible de données
+C:\Users\Kevin LEMAIRE\Desktop\projet-IA\projet-IA\Pixel.cpp(5,37): warning C4244:         with
+C:\Users\Kevin LEMAIRE\Desktop\projet-IA\projet-IA\Pixel.cpp(5,37): warning C4244:         [
+C:\Users\Kevin LEMAIRE\Desktop\projet-IA\projet-IA\Pixel.cpp(5,37): warning C4244:             T=float
+C:\Users\Kevin LEMAIRE\Desktop\projet-IA\projet-IA\Pixel.cpp(5,37): warning C4244:         ]
   projet-IA.vcxproj -> C:\Users\Kevin LEMAIRE\Desktop\projet-IA\x64\Debug\projet-IA.exe

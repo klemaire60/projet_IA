@@ -4,28 +4,33 @@
 
 int main()
 {
-	//Création de la fenêtre 
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Simulation IA");
+    // Création de la fenêtre
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Simulation IA");
 
-	//Création du rectangle
-	Rectangle rectangle(700, 500, 50, 50);
+    // Création du rectangle
+    Rectangle rectangle(700, 500, 50, 50);
 
-	//Création du pixel
-	Pixel pixel(20, 20, 400, 300, 100);
+    // Création du pixel
+    Pixel pixel(20, 20, 400, 300, 100, rectangle);
 
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-		window.clear(/*sf::Color::Black*/);
+    sf::Clock clock;
 
-		rectangle.draw(window);
-		pixel.draw(window);
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        window.clear(/*sf::Color::Black*/);
 
-		window.display();
-	}
+        float ellapsedTime = clock.restart().asSeconds();
+
+        pixel.update(ellapsedTime);
+        rectangle.draw(window);
+        pixel.draw(window);
+
+        window.display();
+    }
 }

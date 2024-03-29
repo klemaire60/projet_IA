@@ -13,5 +13,6 @@ public:
     ~Rectangle();
     void draw(sf::RenderWindow& window) const;
 
+    sf::Vector2f getPosition() const;
     void setPosition(sf::Vector2f newPosition);
 };

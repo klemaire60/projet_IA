@@ -19,6 +19,11 @@ void Rectangle::draw(sf::RenderWindow& window) const
     window.draw(rectangleShape);
 }
 
+sf::Vector2f Rectangle::getPosition() const
+{
+    return position;
+}
+
 void Rectangle::setPosition(sf::Vector2f newPosition)
 {
     position = newPosition;
