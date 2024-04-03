@@ -1,6 +1,8 @@
 #include "SFML/Graphics.hpp"
+
 #include "Rectangle.h"
 #include "Pixel.h"
+#include "Perceptron.h"
 
 int main()
 {
@@ -13,6 +15,9 @@ int main()
     // Création du pixel
     Pixel pixel(20, 20, 400, 300, 100, rectangle);
 
+    // Création du perceptron
+    Perceptron perceptron(0.1, 2);
+    
     sf::Clock clock;
 
     while (window.isOpen())
@@ -27,7 +32,27 @@ int main()
 
         float ellapsedTime = clock.restart().asSeconds();
 
-        pixel.update(ellapsedTime);
+        // Données d'entraînement
+        double trainingData[6][2] = {
+            {10, 0.1},
+            {20, 0.3},
+            {30, 0.6},
+            {40, 0.8},
+            {50, 1.0},
+            {60, 0.5}
+        };
+
+        // Entraînement du perceptron
+        for (int i = 0; i < 10000; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                perceptron.train(trainingData[j], trainingData[j][1], 0.1);
+            }
+        }
+
+        pixel.update(ellapsedTime, perceptron);
+
         rectangle.draw(window);
         pixel.draw(window);
 

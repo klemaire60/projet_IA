@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+
 #include "Rectangle.h"
+#include "Perceptron.h"
 
 class Pixel
 {
@@ -9,6 +11,7 @@ private:
 
     sf::Vector2f position;
     float speed;
+    float baseSpeed = 1;
     sf::Vector2f direction;
 
     Rectangle& targetRectangle;
@@ -16,7 +19,7 @@ private:
 public:
     Pixel(int width, int height, float x, float y, float speed, Rectangle& targetRect);
     ~Pixel();
-    void update(float ellapsedTime);
+    void update(float ellapsedTime, Perceptron& perceptron);
     void draw(sf::RenderWindow& window) const;
     float getSpeed();
     void setSpeed(float newSpeed);

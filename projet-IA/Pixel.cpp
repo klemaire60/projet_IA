@@ -1,4 +1,5 @@
 #include "Pixel.h"
+#include <iostream>
 
 Pixel::Pixel(int width, int height, float x, float y, float speed, Rectangle& targetRect) : targetRectangle(targetRect)
 {
@@ -6,7 +7,8 @@ Pixel::Pixel(int width, int height, float x, float y, float speed, Rectangle& ta
     pixelShape.setPosition(x, y);
     pixelShape.setFillColor(sf::Color::White);
 
-    this->speed = speed;
+    if (speed <= 0) speed = 1;
+    else this->speed = speed;
     position = sf::Vector2f(x, y);
     setDirection(sf::Vector2f(1, 0));
 }
@@ -15,24 +17,23 @@ Pixel::~Pixel()
 {
 }
 
-void Pixel::update(float ellapsedTime)
+void Pixel::update(float ellapsedTime, Perceptron& perceptron)
 {
     sf::Vector2f targetPosition = targetRectangle.getPosition();
     sf::Vector2f directionToTarget = targetPosition - position;
-    float distanceToTarget = std::sqrt(directionToTarget.x * directionToTarget.x + directionToTarget.y * directionToTarget.y);
 
-    if (distanceToTarget > speed * ellapsedTime)
-    {
-        direction = directionToTarget / distanceToTarget;
-        position.x += direction.x * speed * ellapsedTime;
-        position.y += direction.y * speed * ellapsedTime;
-        pixelShape.setPosition(position);
-    }
-    else
-    {
-        position = targetPosition;
-        pixelShape.setPosition(targetPosition);
-    }
+    double input[1] = { std::abs(directionToTarget.x) };
+    double predictedSpeedFactor = perceptron.predict(input);
+
+    // Appliquer un facteur de vitesse prédit par le perceptron à la vitesse de base
+    double currentSpeed = baseSpeed + predictedSpeedFactor;
+
+    std::cout << baseSpeed << std::endl;
+    std::cout << predictedSpeedFactor << std::endl;
+    std::cout << currentSpeed << std::endl;
+
+    position.x += currentSpeed * ellapsedTime;
+    pixelShape.setPosition(position);
 }
 
 void Pixel::draw(sf::RenderWindow& window) const

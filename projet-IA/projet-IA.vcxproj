@@ -145,10 +145,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Perceptron.cpp" />
     <ClCompile Include="Pixel.cpp" />
     <ClCompile Include="Rectangle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Perceptron.h" />
     <ClInclude Include="Pixel.h" />
     <ClInclude Include="Rectangle.h" />
   </ItemGroup>
