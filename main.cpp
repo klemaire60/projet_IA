@@ -45,56 +45,51 @@ int main(int argc, char **argv)
 				printf("------------------------------------------\n\n\n");
 			}
 		}
-		else if (choice == 2)
+		else if (choice == 2) 
 		{
 			Environment env;
-			Bird * bird = new Bird();
-			bird->brain = algorithm.getNeuralNetwork(0);
-			env.addActor(bird);
-			// on fait tourner le programme jusqu'à ce que la fenêtre soit fermée
-			while (env.haveActorAlive())
+			Robot* robot = new Robot();
+			env.addActor(robot);
+			//while (env.haveActorAlive())
 			{
-				// on inspecte tous les évènements de la fenêtre qui ont été émis depuis la précédente itération
 				sf::Event event;
 				while (window.pollEvent(event))
 				{
 					// évènement "fermeture demandée" : on ferme la fenêtre
 					if (event.type == sf::Event::Closed)
 						window.close();
-					if (event.type == sf::Event::KeyPressed)
-					{
-						//bird->jump();
-					}
 				}
-
 				env.iterate();
 
 				window.clear();
 
-				std::deque<Gate> & gates = env.getGates();
-				double xOffset = env.getXOffset() - 100;
-
-				for (int i = 0; i < gates.size(); i++)
-				{
-					Gate * gate = &gates[i];
-					sf::RectangleShape rect;
-					rect.setPosition(gate->x - xOffset, gate->yMin);
-					rect.setSize(sf::Vector2f(5, gate->yMax - gate->yMin));
-					window.draw(rect);
-				}
-
-
-				std::vector<Bird*> & actors = env.getActors();
+				//std::vector<Robot*>& actors = env.getActors();
+				/*
 				for (int i = 0; i < actors.size(); i++)
 				{
-					Bird * actor = actors[i];
+					Robot* actor = actors[i];
 					sf::RectangleShape rect;
-					rect.setPosition(actor->x - xOffset, actor->y);
+					rect.setPosition(actor->x, actor->y);
 					rect.setSize(sf::Vector2f(5, 5));
 					rect.setFillColor(actor->isDead ? sf::Color::Red : sf::Color::Green);
 					window.draw(rect);
 				}
+				*/
+				sf::RectangleShape rectangleShape;
+				rectangleShape.setSize(sf::Vector2f(500, 500));
+				rectangleShape.setPosition(50, 50);
+				rectangleShape.setFillColor(sf::Color::Transparent);
+				rectangleShape.setOutlineColor(sf::Color::White);
+				rectangleShape.setOutlineThickness(5.f);
 
+				sf::RectangleShape rect;
+				rect.setPosition(300, 300);
+				rect.setSize(sf::Vector2f(15, 15));
+				rect.setFillColor(sf::Color::Green);
+
+
+				window.draw(rect);
+				window.draw(rectangleShape);
 				window.display();
 			}
 		}

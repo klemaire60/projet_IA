@@ -807,7 +807,7 @@ void NEATAlgorithm::evaluatePopulation()
 	Environment env;
 	for (int i = 0; i < population.size(); i++)
 	{
-		Bird * actor = new Bird();
+		Robot * actor = new Robot();
 		actor->brain = population[i];
 		env.addActor(actor);
 	}
@@ -815,7 +815,7 @@ void NEATAlgorithm::evaluatePopulation()
 	while (env.haveActorAlive())
 	{
 		env.iterate();
-		std::vector<Bird *> & actors = env.getActors();
+		std::vector<Robot *> & actors = env.getActors();
 		double currentX = actors[0]->x;
 		if (currentX > 10000)
 		{
@@ -830,7 +830,7 @@ void NEATAlgorithm::evaluatePopulation()
 		}
 	}
 
-	std::vector<Bird*> actors = env.getActors();
+	std::vector<Robot*> actors = env.getActors();
 	for (int i = 0; i < actors.size(); i++)
 	{
 		actors[i]->brain->fitness = actors[i]->fitness;

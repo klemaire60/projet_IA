@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include <deque>
 #include <vector>
 #include <random>
@@ -14,7 +15,7 @@ struct Gate
 	Gate(double x, double yMin, double yMax);
 };
 
-struct Bird
+struct Robot
 {
 	double x;
 	double y;
@@ -24,34 +25,54 @@ struct Bird
 	double fitness;
 	bool hasJump;
 
-	Genome * brain;
+	Genome* brain;
 
-	Bird();
-	void applyGravity(double gravity);
-	void applyAI(Gate nextGate, Gate secondNextGate);
-	void jump();
-	void applyPhysics(double xIncrementPerIteration);
+	Robot();
+	void applyAI(sf::RectangleShape &obstacle);
+	void move();
+	float getDistanceFrontObstacle();
+	
 	void setDead(double x);
 };
 
 class Environment
 {
+private:
+    sf::RectangleShape rectangleShape;
+
+	sf::RectangleShape obstacle;
+
+    sf::Vector2f position;
+
 	std::random_device device;
 	std::deque<Gate> gates;
 	double xIncrementPerIteration; // Iteration = 17 ms
 	double gravity;
 
-	std::vector<Bird*> actors;
-	void generateGates();
+	std::vector<Robot*> actors;
+	void generateObstacle();
 	double nextGateX = 50;
 
 public:
-	Environment() {
+	Environment()// int width, int height, float x, float y) // 700, 500, 50, 50
+	{
+		setPosition(sf::Vector2f(50, 50));
+		rectangleShape.setSize(sf::Vector2f(700, 500));
+		rectangleShape.setPosition(position);
+		rectangleShape.setFillColor(sf::Color::Transparent);
+		rectangleShape.setOutlineColor(sf::Color::White);
+		rectangleShape.setOutlineThickness(5.f);
+
 		xIncrementPerIteration = 0.5;
 		gravity = -90.89;
 
-		generateGates();
-	}
+		generateObstacle();
+	};
+    ~Environment();
+    void draw(sf::RenderWindow& window) const;
+
+    sf::Vector2f getPosition() const;
+    void setPosition(sf::Vector2f newPosition);
 
 	double getXOffset()
 	{
@@ -61,9 +82,9 @@ public:
 		return 0;
 	}
 
-	std::deque<Gate> & getGates() { return gates; }
-	std::vector<Bird*> & getActors() { return actors; }
-	void addActor(Bird* actor) { actors.push_back(actor); }
+	std::deque<Gate>& getGates() { return gates; }
+	std::vector<Robot*>& getActors() { return actors; }
+	void addActor(Robot* actor) { actors.push_back(actor); }
 
 	bool haveActorAlive() {
 		bool alive = false;
@@ -80,5 +101,3 @@ public:
 
 	void iterate();
 };
-
-
